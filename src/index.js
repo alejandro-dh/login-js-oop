@@ -1,7 +1,13 @@
-export default {
-    User: require('./User'),
-    AdminUser: require('./AdminUser'),
-    CustomerUser: require('./CustomerUser'),
-    SellerUser: require('./SellerUser'),
-    RegisterForm: require('./RegisterForm'),
+let User = require('./User')
+let AdminUser = require('./AdminUser')
+let CustomerUser = require('./CustomerUser')
+let SellerUser = require('./SellerUser')
+let RegisterForm = require('./RegisterForm')
+
+module.exports = {
+    User,
+    AdminUser,
+    CustomerUser,
+    SellerUser,
+    RegisterForm,
 }

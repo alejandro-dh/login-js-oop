@@ -11,4 +11,4 @@ class CustomerUser extends User {
     }
 }
 
-export default CustomerUser
+module.exports = CustomerUser

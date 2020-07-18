@@ -1,12 +1,10 @@
 const path = require('path');
 
 module.exports = {
-    mode: 'development',
+    mode: 'production',
     entry: './src/index.js',
     output: {
-      libraryTarget: 'umd',
-      libraryExport: 'default', 
-      library: 'app',
+      library: 'App',
       globalObject: 'this',
       path: path.resolve(__dirname, 'dist'),
       filename: 'bundle.js'

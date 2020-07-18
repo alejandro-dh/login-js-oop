@@ -4,32 +4,52 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+
+    <style rel="stylesheet">
+        .hide {display: none;}
+    </style>
 </head>
 <body>
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <div class="alert alert-success my-3 hide">
+                    El usuario ha sido creado con exito!
+                </div>
 
-    <form id="register-form" action="">
-        <div>
-            <label for="">Email</label>
-            <input type="email" name="email">
+                <form id="register-form" action="">
+                    <div class="form-group">
+                        <label for="">Email</label>
+                        <input class="form-control" type="email" name="email">
+                        <span class="text-danger form-text"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="">Password</label>
+                        <input class="form-control" type="password" name="password">
+                        <span class="text-danger form-text"></span>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="">Tipo de Usuario</label>
+                        <input type="radio" name="type" value="customer"> Cliente
+                        <input type="radio" name="type" value="seller"> Vendedor
+                        <span class="text-danger form-text"></span>
+                    </div>
+                    
+                    <div class="form-group">
+                        <button class="btn btn-primary">Enviar</button>
+                    </div>
+                </form>
+            </div>
         </div>
-        <div>
-            <label for="">Password</label>
-            <input type="password" name="password">
-        </div>
-        <div>
-            <label for="">Tipo de Usuario</label>
-            <input type="radio" name="type" value="customer"> Cliente
-            <input type="radio" name="type" value="seller"> Vendedor
-        </div>
-        <div>
-            <button>Enviar</button>
-        </div>
-    </form>
+    </div>
     
     <script src="dist/bundle.js"></script>
     <script>
         let form = document.getElementById('register-form')
-        let registerForm = new app.default.RegisterForm.default
+        let registerForm = new App.RegisterForm
 
         form.addEventListener('submit', function (e) {
             e.preventDefault()
@@ -42,8 +62,19 @@
 
             registerForm
                 .register(data)
-                .then(user => console.log('El usuario registrado es: ', user))
-                .catch(errors => console.log('Los errores de validacion son: ', errors))
+                .then(user => {
+                    form.classList.add('hide')
+                    form.previousElementSibling.classList.remove('hide')
+                })
+                .catch(errors => {
+                    for (let field in errors) {
+                        let el = form[field]
+
+                        if (el instanceof RadioNodeList) el = el[el.length-1]
+
+                        el.nextElementSibling.innerHTML = errors[field]
+                    }
+                })
         })
     </script>
 </body>

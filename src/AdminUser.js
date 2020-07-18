@@ -10,4 +10,4 @@ class AdminUser extends User {
     }
 }
 
-export default AdminUser
+module.exports = AdminUser

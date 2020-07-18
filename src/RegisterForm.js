@@ -1,5 +1,5 @@
-import CustomerUser from './CustomerUser'
-import SellerUser from './SellerUser'
+let CustomerUser = require('./CustomerUser')
+let SellerUser = require('./SellerUser')
 
 class RegisterForm {
     constructor() {
@@ -60,4 +60,4 @@ class RegisterForm {
     }
 }
 
-export default RegisterForm
+module.exports = RegisterForm
