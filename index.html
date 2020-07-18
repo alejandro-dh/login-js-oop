@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <form id="register-form" action="">
+        <div>
+            <label for="">Email</label>
+            <input type="email" name="email">
+        </div>
+        <div>
+            <label for="">Password</label>
+            <input type="password" name="password">
+        </div>
+        <div>
+            <label for="">Tipo de Usuario</label>
+            <input type="radio" name="type" value="customer"> Cliente
+            <input type="radio" name="type" value="seller"> Vendedor
+        </div>
+        <div>
+            <button>Enviar</button>
+        </div>
+    </form>
+    
+    <script src="dist/bundle.js"></script>
+    <script>
+        let form = document.getElementById('register-form')
+        let registerForm = new app.default.RegisterForm.default
+
+        form.addEventListener('submit', function (e) {
+            e.preventDefault()
+
+            let data = {
+                email: form.email.value,
+                password: form.password.value,
+                type: form.type.value,
+            }
+
+            registerForm
+                .register(data)
+                .then(user => console.log('El usuario registrado es: ', user))
+                .catch(errors => console.log('Los errores de validacion son: ', errors))
+        })
+    </script>
+</body>
+</html>
